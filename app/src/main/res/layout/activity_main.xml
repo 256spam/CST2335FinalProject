@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/menuButton1"
+                android:layout_width="0dip"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="@string/menubutton1" />
+
+            <Button
+                android:id="@+id/menuButton2"
+                android:layout_width="0dip"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="@string/menubutton2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/menuButton3"
+                android:layout_width="0dip"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="@string/menubutton3" />
+
+            <Button
+                android:id="@+id/menuButton4"
+                android:layout_width="0dip"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="@string/menubutton4" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
