@@ -4,4 +4,8 @@
     <string name="menubutton2">Flight Tracker</string>
     <string name="menubutton3">Newsfeed</string>
     <string name="menubutton4">NYT Article Search</string>
+    <string name="dictButton1">Search</string>
+    <string name="dictButton2">Toggle View</string>
+    <string name="dictButton3">Help</string>
+    <string name="dictEditText1">Type your search Here</string>
 </resources>
