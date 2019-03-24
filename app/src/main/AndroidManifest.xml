@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FlightSearchActivity"></activity>
+        <activity
+            android:name=".FlightSearchActivity"
+            android:label="Flight Tracker"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".DictionaryActivity"
             android:label="Dictionary"
@@ -26,6 +29,7 @@
             android:name=".NYTActivity"
             android:label="NYT Article"
             android:parentActivityName=".MainActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
