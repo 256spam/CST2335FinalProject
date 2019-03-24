@@ -4,10 +4,6 @@
     <string name="menubutton2">Flight Tracker</string>
     <string name="menubutton3">Newsfeed</string>
     <string name="menubutton4">NYT Article Search</string>
-
-
-    <!--Flight status tracker resources below-->
-
     <string name="listFlightNameString">Flight</string>
     <string name="listFlightStatusString">Status</string>
     <string name="listFlightLocationString">Location</string>
@@ -15,14 +11,11 @@
     <string name="flightHelpVersionNumberString">Version: 0.0.1</string>
     <string name="flightHelpHowToString">HOW TO USE</string>
     <string name="flightHelpHowToInstructions">Insert instructions here</string>
-
     <string name="flightHelpOkButton">Okay</string>
     <string name="flightDetailsRemoveButton">REMOVE</string>
-
-
     <string name="flightSearchEditHint">Search...</string>
-
-
-    <!--Flight status tracker resources above-->
-
+    <string name="dictButton1">Search</string>
+    <string name="dictButton2">Toggle View</string>
+    <string name="dictButton3">Help</string>
+    <string name="dictEditText1">Type your search Here</string>
 </resources>
