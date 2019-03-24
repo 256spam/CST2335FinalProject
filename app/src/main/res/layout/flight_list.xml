@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/listFlightName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="@string/listFlightNameString" />
+
+
+    <TextView
+        android:id="@+id/listFlightLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/listFlightLocationString"
+        android:layout_below="@+id/listFlightName"
+        android:paddingLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/listFlightStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/listFlightStatusString"
+        android:layout_alignParentRight="true"
+        android:paddingRight="10dp"
+        />
+
+
+</RelativeLayout>
