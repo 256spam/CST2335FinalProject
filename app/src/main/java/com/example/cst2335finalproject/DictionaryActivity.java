@@ -58,6 +58,9 @@ public class DictionaryActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        progress.setVisibility(View.VISIBLE);
+        progress.setProgress(50);
+
         //temporary feature to add stand-in entries
         addToChat("Yeet", "Throwing with force", "The act of throwing an item with the goal of force and speed. Past tense is yote.");
         addToChat("Kobe", "Throwing with accuracy", "The act of throwing an item with the goal of accuracy and distance.");
