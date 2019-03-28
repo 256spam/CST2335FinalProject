@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CST2335 Final Project</string>
+    <string name="menubutton1">Dictionary</string>
+    <string name="menubutton2">Flight Tracker</string>
+    <string name="menubutton3">Newsfeed</string>
+    <string name="menubutton4">NYT Article Search</string>
+    <string name="listFlightNameString">Flight</string>
+    <string name="listFlightStatusString">Status</string>
+    <string name="listFlightLocationString">Location</string>
+    <string name="flightHelpAuthorNameString">Author: Albert Pham</string>
+    <string name="flightHelpVersionNumberString">Version: 0.0.1</string>
+    <string name="flightHelpHowToString">HOW TO USE</string>
+    <string name="flightHelpHowToInstructions">Insert instructions here</string>
+    <string name="flightHelpOkButton">Okay</string>
+    <string name="flightDetailsRemoveButton">REMOVE</string>
+    <string name="flightSearchEditHint">Search...</string>
+    <string name="dictButton1">Search</string>
+    <string name="dictButton2">Toggle View</string>
+    <string name="dictButton3">Help</string>
+    <string name="dictEditText1">Type your search Here</string>
+</resources>
