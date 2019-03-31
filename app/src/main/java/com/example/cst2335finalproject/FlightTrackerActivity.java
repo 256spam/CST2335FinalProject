@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.cst2335finalproject.classes.Flight;
 import com.example.cst2335finalproject.classes.FlightListAdapter;
 
+
 /**
  * This class deals with the main activity of Flight Status Tracker
  *
@@ -33,7 +34,7 @@ public class FlightTrackerActivity extends AppCompatActivity {
     /**
      * onCreate sets the listview and toolbar
      *
-     * @param savedInstanceState
+     * @param savedInstanceState bundle
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class FlightTrackerActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.flightListView);
         adapter = new FlightListAdapter(this);
+
         setSupportActionBar(mainToolbar);
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -55,38 +57,51 @@ public class FlightTrackerActivity extends AppCompatActivity {
 
             Flight flight = adapter.getItem(position);
 
-
             TextView name = v.findViewById(R.id.flightDetailsName);
             TextView status = v.findViewById(R.id.flightDetailsStatus);
-            TextView location = v.findViewById(R.id.flightDetailsLocation);
+            TextView latitude = v.findViewById(R.id.flightDetailsLatitude);
+            TextView longitude = v.findViewById(R.id.flightDetailsLongitude);
+            TextView direction = v.findViewById(R.id.flightDetailsDirection);
             TextView speed = v.findViewById(R.id.flightDetailsSpeed);
             TextView altitude = v.findViewById(R.id.flightDetailsAltitude);
 
-
             name.setText(flight.getFlightName());
-            status.setText("Status: " + flight.getFlightStatus());
-            location.setText("Location: " +flight.getFlightLocation());
-            // TODO: THESE AREN'T SET YET
-            speed.setText("Speed: Not set yet");
-            altitude.setText("Altitude: ALTITUDE NOT SET YET");
+
+            String statusString = "Status: " + flight.getFlightStatus();
+            String speedString = "Speed: " + flight.getFlightSpeed();
+            String latitudeString = "Latitude: " + flight.getFlightLatitude();
+            String longitudeString = "Longitude: " + flight.getFlightLongitude();
+            String directionString = "Direction: " + flight.getFlightDirection();
+            String altitudeString = "Altitude: " + flight.getFlightAltitude();
+
+            status.setText(statusString);
+            speed.setText(speedString);
+            latitude.setText(latitudeString);
+            longitude.setText(longitudeString);
+            direction.setText(directionString);
+            altitude.setText(altitudeString);
 
 
             builder.setNegativeButton(R.string.flightDetailsRemoveButton, (dialog, which) -> {
                 // TODO: Actually remove it from the list and from the database
+                Toast.makeText(this, "Soon to be Removed from saved", Toast.LENGTH_SHORT).show();
                 dialog.cancel();
             });
-
 
             builder.create().show();
         });
 
-
         // TODO: Temporary flights to show listview below
 
-        Flight one = new Flight("F134", "Ottawa","LANDED");
-        Flight two = new Flight("F135", "Montreal","FLYING");
-        Flight three = new Flight("F136", "Toronto","CRASHING");
-
+        Flight one = new Flight("F134","135","135","-35","LANDED","135","7000");
+        one.setFlightDepartingFrom("YOW");
+        one.setFlightArrivingTo("YUL");
+        Flight two = new Flight("F135","245","243","-54","FLYING","1245","8000");
+        two.setFlightDepartingFrom("YOW");
+        two.setFlightArrivingTo("YUL");
+        Flight three = new Flight("F136","547","987","-87","CRASHING","132","6000");
+        three.setFlightDepartingFrom("YUL");
+        three.setFlightArrivingTo("YOW");
 
         adapter.addFlight(one);
         adapter.notifyDataSetChanged();
@@ -101,12 +116,11 @@ public class FlightTrackerActivity extends AppCompatActivity {
 
     }
 
-
     /**
      * Sets the menu for the toolbar
      *
      * @param menu
-     * @return
+     * @return boolean
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -119,7 +133,7 @@ public class FlightTrackerActivity extends AppCompatActivity {
      * React depending on which item on the nav menu was selected
      *
      * @param item item selected
-     * @return
+     * @return boolean
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -128,10 +142,6 @@ public class FlightTrackerActivity extends AppCompatActivity {
             case R.id.searchMenuItem:
                 Intent nextPage = new Intent(this, FlightSearchActivity.class);
                 startActivity(nextPage);
-                break;
-
-            case R.id.listMenuItem:
-                Toast.makeText(this, "Page under construction!", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.aboutMenuItem:
@@ -149,6 +159,5 @@ public class FlightTrackerActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
 }

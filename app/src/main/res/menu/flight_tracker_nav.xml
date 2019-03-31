@@ -10,12 +10,6 @@
         android:orderInCategory="10"
         app:showAsAction="always"></item>
 
-    <item
-        android:id="@+id/listMenuItem"
-        android:icon="@drawable/fst_list"
-        android:title="list"
-        android:orderInCategory="20"
-        app:showAsAction="always"></item>
 
     <item
         android:id="@+id/aboutMenuItem"
