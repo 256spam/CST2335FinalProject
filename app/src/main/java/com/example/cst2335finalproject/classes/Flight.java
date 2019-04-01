@@ -9,15 +9,79 @@ package com.example.cst2335finalproject.classes;
 public class Flight {
 
 
-    private String flightName,flightLocation,flightStatus,flightSpeed,flightAltitude;
+    private String flightName, flightLatitude, flightLongitude, flightDirection,flightStatus,flightSpeed,flightAltitude;
+    private String flightDepartingFrom,flightArrivingTo;
 
-
-    public Flight(String flightName, String flightLocation, String flightStatus){
+    /**
+     * Initial constructor
+     *
+     * @param flightName flight name
+     * @param flightLatitude flight latitude
+     * @param flightLongitude flight longitude
+     * @param flightDirection flight direction
+     * @param flightStatus flight status
+     * @param flightSpeed flight speed
+     * @param flightAltitude flight altitude
+     */
+    public Flight(String flightName, String flightLatitude,String flightLongitude, String flightDirection, String flightStatus, String flightSpeed,String flightAltitude){
         this.flightName = flightName;
-        this.flightLocation = flightLocation;
+        this.flightLatitude = flightLatitude;
+        this.flightLongitude = flightLongitude;
+        this.flightDirection = flightDirection;
         this.flightStatus = flightStatus;
+        this.flightSpeed = flightSpeed;
+        this.flightAltitude = flightAltitude;
+    }
+
+    /**
+     * Default constructor
+     */
+    public Flight(){
+
+    }
 
 
+    /**
+     * Gets the flight arrival details
+     * @return flight arriving
+     */
+    public String getFlightArrivingTo() {
+        return flightArrivingTo;
+    }
+
+    /**
+     * Gets the flight departure details
+     * @return flight departing
+     */
+    public String getFlightDepartingFrom() {
+        return flightDepartingFrom;
+    }
+
+    /**
+     * Gets the flight latitude
+     *
+     * @return flight latitude
+     */
+    public String getFlightLatitude() {
+        return flightLatitude;
+    }
+
+    /**
+     * Gets the flight direction
+     *
+     * @return get flight direction
+     */
+    public String getFlightDirection() {
+        return flightDirection;
+    }
+
+    /**
+     * Gets the flight longitude
+     *
+     * @return flight longitude
+     */
+    public String getFlightLongitude() {
+        return flightLongitude;
     }
 
     /**
@@ -29,13 +93,6 @@ public class Flight {
         return flightName;
     }
 
-    /**
-     * Gets the flight location
-     * @return flight location
-     */
-    public String getFlightLocation(){
-        return flightLocation;
-    }
 
     /**
      * Gets the flight status
@@ -70,14 +127,6 @@ public class Flight {
     }
 
     /**
-     * Sets flight location
-     * @param flightLocation flight location
-     */
-    public void setFlightLocation(String flightLocation){
-        this.flightLocation = flightLocation;
-    }
-
-    /**
      * Sets flight status
      * @param flightStatus flight status
      */
@@ -101,6 +150,45 @@ public class Flight {
         this.flightAltitude = flightAltitude;
     }
 
+    /**
+     * Sets the flight direction
+     * @param flightDirection flight direction
+     */
+    public void setFlightDirection(String flightDirection) {
+        this.flightDirection = flightDirection;
+    }
+
+    /**
+     * Sets the flight latitude
+     *
+     * @param flightLatitude flight latitude
+     */
+    public void setFlightLatitude(String flightLatitude) {
+        this.flightLatitude = flightLatitude;
+    }
+
+    /**
+     * Sets flight longitude
+     * @param flightLongitude flight longitude
+     */
+    public void setFlightLongitude(String flightLongitude) {
+        this.flightLongitude = flightLongitude;
+    }
 
 
+    /**
+     * Sets the flight arriving to
+     * @param flightArrivingTo arriving to
+     */
+    public void setFlightArrivingTo(String flightArrivingTo) {
+        this.flightArrivingTo = flightArrivingTo;
+    }
+
+    /**
+     * Sets flight departing from
+     * @param flightDepartingFrom departing from
+     */
+    public void setFlightDepartingFrom(String flightDepartingFrom) {
+        this.flightDepartingFrom = flightDepartingFrom;
+    }
 }

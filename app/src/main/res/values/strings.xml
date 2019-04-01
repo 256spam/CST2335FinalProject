@@ -6,13 +6,14 @@
     <string name="menubutton4">NYT Article Search</string>
     <string name="listFlightNameString">Flight</string>
     <string name="listFlightStatusString">Status</string>
-    <string name="listFlightLocationString">Location</string>
+    <string name="listFlightAltitude">Altitude</string>
     <string name="flightHelpAuthorNameString">Author: Albert Pham</string>
-    <string name="flightHelpVersionNumberString">Version: 0.0.1</string>
-    <string name="flightHelpHowToString">HOW TO USE</string>
-    <string name="flightHelpHowToInstructions">Insert instructions here</string>
+    <string name="flightHelpVersionNumberString">Version: 0.0.2</string>
+    <string name="flightHelpHowToString">\nHOW TO USE\n</string>
+    <string name="flightHelpHowToInstructions">Saved items are in the main menu\n\nSearch icon in toolbar allows you to search by airport EX: YOW\n\nAfter searching, click on the item to add them to the saved list</string>
     <string name="flightHelpOkButton">Okay</string>
     <string name="flightDetailsRemoveButton">REMOVE</string>
+    <string name="flightSearchDetailSaveButton">SAVE</string>
     <string name="flightSearchEditHint">Search...</string>
     <string name="dictButton1">Search</string>
     <string name="dictButton2">Toggle View</string>
@@ -25,5 +26,4 @@
                                             A list of results will appear bellow the search bar with the titles of related news items. To view more information
                                             on a news item, simply click on the item, and you will be redirected to the full article.</string>
     <string name="newsDetailDialogTitle">View full article?</string>
-
 </resources>

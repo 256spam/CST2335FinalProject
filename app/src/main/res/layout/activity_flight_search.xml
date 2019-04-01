@@ -25,6 +25,7 @@
         android:layout_below="@id/searchToolbar">
 
         <EditText
+            android:id="@+id/searchEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/flightSearchEditHint"
@@ -42,19 +43,39 @@
     </RelativeLayout>
 
 
+
     <LinearLayout
+        android:id="@+id/searchProgressViewLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="invisible"
         android:layout_below="@+id/searchBar">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/searchListViewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:layout_below="@+id/searchBar">
+
 
         <ListView
             android:id="@+id/flightListView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/controls"></ListView>
-
-
     </LinearLayout>
 
 

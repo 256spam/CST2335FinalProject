@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".FlightTrackerActivity">
 
-
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/mainToolbar"
         android:layout_width="match_parent"
@@ -16,22 +14,11 @@
 
     </android.support.v7.widget.Toolbar>
 
-
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@+id/mainToolbar">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:visibility="visible"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
 
         <ListView
@@ -39,9 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/controls"></ListView>
-
-
     </LinearLayout>
-
 
 </RelativeLayout>

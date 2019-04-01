@@ -19,18 +19,25 @@ import java.util.ArrayList;
 public class FlightListAdapter extends BaseAdapter {
 
 
-    ArrayList<Flight> flights;
-    Activity ctx;
+    private ArrayList<Flight> flights;
+    private Activity ctx;
 
     public FlightListAdapter(Activity ctx){
         this.ctx = ctx;
-        flights = new ArrayList<>();
+        this.flights = new ArrayList<>();
+    }
+
+    /**
+     * Clears the array list
+     */
+    public void clearFlightList(){
+        this.flights = new ArrayList<>();
     }
 
     /**
      * Adding a flight to the array list
      *
-     * @param flight
+     * @param flight flight
      */
     public void addFlight(Flight flight){
         flights.add(flight);
@@ -38,7 +45,7 @@ public class FlightListAdapter extends BaseAdapter {
 
     /**
      * Get flight count, how many flights are saved under the list
-     * @return
+     * @return flight count
      */
     @Override
     public int getCount() {
@@ -49,7 +56,7 @@ public class FlightListAdapter extends BaseAdapter {
      * Get the flight with the index
      *
      * @param position index of the flight on the array list
-     * @return
+     * @return flight
      */
     @Override
     public Flight getItem(int position) {
@@ -59,8 +66,8 @@ public class FlightListAdapter extends BaseAdapter {
     /**
      * Get the item ID of the index
      *
-     * @param position
-     * @return
+     * @param position position
+     * @return flight
      */
     @Override
     public long getItemId(int position) {
@@ -70,16 +77,16 @@ public class FlightListAdapter extends BaseAdapter {
     /**
      * Get the view of the specific flight
      *
-     * @param position
-     * @param convertView
-     * @param parent
-     * @return
+     * @param position position
+     * @param convertView view
+     * @param parent parent
+     * @return view
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater layoutInflater = ctx.getLayoutInflater();
-        View view = null;
+        View view;
         Flight flight = flights.get(position);
 
 
@@ -89,7 +96,7 @@ public class FlightListAdapter extends BaseAdapter {
         TextView status = view.findViewById(R.id.listFlightStatus);
 
         name.setText(flight.getFlightName());
-        location.setText(flight.getFlightLocation());
+        location.setText(flight.getFlightDepartingFrom() + " > " + flight.getFlightArrivingTo());
         status.setText(flight.getFlightStatus());
 
         return view;
