@@ -19,6 +19,13 @@
     <string name="dictButton2">Toggle View</string>
     <string name="dictButton3">Help</string>
     <string name="dictEditText1">Type your search Here</string>
+    <string name="dictHelpMenuTitle">Help and Info</string>
+    <string name="dictHelpMenuText">Author: Peter Best \n Version number: 0.3 \n Instructions: Type in the Search field the term you wish to search for and click the search button. Tapping on a definition will bring up more detailed information and the option to save it to local storage. To view any locally stored definitions, hit the toggle mode button, though this will disable search functionality.</string>
+    <string name="dictCloseOption">Close</string>
+    <string name="dictWIP">Feature unfinished, come back later.</string>
+    <string name="dictUndo">Undo</string>
+    <string name="dictSave">Save Definiton</string>
+    <string name="dictDefinitionTitle">Definition</string>
     <string name="newsfeedHelpMenuTitle">Help Menu</string>
     <string name="newsfeedHelpMenuAuthorName">Newsfeed By: Patrick Carter</string>
     <string name="newsfeedVersionNumber">Version Number: 1.0</string>
