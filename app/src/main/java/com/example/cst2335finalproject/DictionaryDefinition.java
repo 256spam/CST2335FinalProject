@@ -2,16 +2,26 @@ package com.example.cst2335finalproject;
 
 public class DictionaryDefinition{
     String definitonTitle;
-    String shortDefintion;
-    String longDefinition;
+    String definition;
+    String wordClass;
 
-    public DictionaryDefinition(String t, String s, String l){
+    public DictionaryDefinition(String t, String sd, String ld, String wc){
         definitonTitle = t;
-        shortDefintion = s;
-        longDefinition = l;
+        definition = ld;
+        wordClass = wc;
+    }
+
+    public DictionaryDefinition(){
+        definitonTitle = null;
+        definition = null;
+        wordClass = null;
     }
 
     public String getDefinitonTitle(){return definitonTitle;}
-    public String getShortDefintion(){return shortDefintion;}
-    public String getLongDefinition(){return longDefinition;}
+    public String getDefinition(){return definition;}
+    public String getWordClass(){return wordClass;}
+
+    public void setDefinitionTitle(String T){definitonTitle = T;}
+    public void setDefinition(String D){definition = D;}
+    public void setWordClass(String C){wordClass = C;}
 }

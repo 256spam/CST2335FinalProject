@@ -3,11 +3,14 @@ package com.example.cst2335finalproject;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +22,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.xmlpull.v1.XmlPullParser;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class DictionaryActivity extends AppCompatActivity {
@@ -59,15 +66,14 @@ public class DictionaryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         progress.setVisibility(View.VISIBLE);
-        progress.setProgress(50);
 
         //temporary feature to add stand-in entries
-        addToChat("Yeet", "Throwing with force", "The act of throwing an item with the goal of force and speed. Past tense is yote.");
-        addToChat("Kobe", "Throwing with accuracy", "The act of throwing an item with the goal of accuracy and distance.");
+        addToDefinitions("Yeet", "Throwing with force", "The act of throwing an item with the goal of force and speed. Past tense is yote.","Verb");
+        addToDefinitions("Kobe", "Throwing with accuracy", "The act of throwing an item with the goal of accuracy and distance.","Verb");
 
         helpButton.setOnClickListener( c -> {
-            Toast toast1 = Toast.makeText(getApplicationContext(), "Author, Peter Best. Version number: 0.2", Toast.LENGTH_SHORT);
-            toast1.show();
+            AlertDialog.Builder alert = createHelpMenu();
+            alert.show();
         });
 
         toggleMode.setOnClickListener( c -> {
@@ -76,8 +82,12 @@ public class DictionaryActivity extends AppCompatActivity {
         });
 
         searchButton.setOnClickListener( c -> {
-            Toast toast1 = Toast.makeText(getApplicationContext(), "Feature unfinished, come back later", Toast.LENGTH_SHORT);
-            toast1.show();
+            if (searchFeild.getText() != null) {
+                definitions.clear();
+                DictionaryQuery query = new DictionaryQuery();
+                query.execute("https://www.dictionaryapi.com/api/v1/references/sd3/xml/" + searchFeild.getText() + "?key=4556541c-b8ed-4674-9620-b6cba447184f");
+                adapter.notifyDataSetChanged();
+            }
         });
 
         adapter = new DictionaryAdapter(getApplicationContext(), R.layout.dict_listview_layout,definitions);
@@ -86,7 +96,7 @@ public class DictionaryActivity extends AppCompatActivity {
         definitionsList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AlertDialog.Builder alert = createAlertDiaglog(parent, position);
+                AlertDialog.Builder alert = createDefinitionAlertDialog(parent, position);
                 alert.show();
             }
         });
@@ -104,32 +114,40 @@ public class DictionaryActivity extends AppCompatActivity {
      * @param position the position in the adapterview to use
      * @return the completed alert dialog
      */
-    public AlertDialog.Builder createAlertDiaglog(AdapterView<?> parent, int position){
+    public AlertDialog.Builder createDefinitionAlertDialog(AdapterView<?> parent, int position){
         AlertDialog.Builder adb = new AlertDialog.Builder(DictionaryActivity.this);
-        adb.setTitle("Definition");
-        adb.setMessage(" selected Item is: " +definitions.indexOf(parent.getItemAtPosition(position)));
+        adb.setTitle(R.string.dictDefinitionTitle);
+        adb.setMessage(definitions.get(position).getDefinitonTitle() +"\n" +definitions.get(position).getWordClass()+"\n" +definitions.get(position).getDefinition());
 
 
-        adb.setPositiveButton("Save Definiton", new DialogInterface.OnClickListener() {
+        adb.setPositiveButton(R.string.dictSave, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //todo implement saving
 
 
-                Snackbar saveSnackbar = Snackbar.make(findViewById(android.R.id.content),"Item saved to local storage. (WIP)",Snackbar.LENGTH_LONG);
-                saveSnackbar.setAction("Undo",new View.OnClickListener(){
+                Snackbar saveSnackbar = Snackbar.make(findViewById(android.R.id.content),R.string.dictWIP,Snackbar.LENGTH_LONG);
+                saveSnackbar.setAction(R.string.dictUndo,new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
                         //todo implement undoing
 
 
-                        Toast toast1 = Toast.makeText(getApplicationContext(), "Feature unfinished, come back later.", Toast.LENGTH_SHORT);
+                        Toast toast1 = Toast.makeText(getApplicationContext(), R.string.dictWIP, Toast.LENGTH_SHORT);
                         toast1.show();
                     }
                 });
                 saveSnackbar.show();
             }
         });
-        adb.setNegativeButton("Close", null);
+        adb.setNegativeButton(R.string.dictCloseOption, null);
+        return adb;
+    }
+
+    public AlertDialog.Builder createHelpMenu(){
+        AlertDialog.Builder adb = new AlertDialog.Builder(DictionaryActivity.this);
+        adb.setTitle(R.string.dictHelpMenuTitle);
+        adb.setMessage(R.string.dictHelpMenuText);
+        adb.setNegativeButton(R.string.dictCloseOption, null);
         return adb;
     }
 
@@ -139,8 +157,8 @@ public class DictionaryActivity extends AppCompatActivity {
      * @param shortDef short definition
      * @param longDef long definition
      */
-    void addToChat(String title, String shortDef, String longDef){
-        DictionaryDefinition definition = new DictionaryDefinition(title,shortDef,longDef);
+    void addToDefinitions(String title, String shortDef, String longDef, String wordClass){
+        DictionaryDefinition definition = new DictionaryDefinition(title,shortDef,longDef,wordClass);
         definitions.add(definition);
     }
 
@@ -190,5 +208,76 @@ public class DictionaryActivity extends AppCompatActivity {
 
         }
         return true;
+    }
+
+    /**
+     * async query to pull information from the server using supplied url string when executed.
+     * 1: establish connection
+     * 2: start query
+     * 3: create parser
+     * 4: every time a new entry is encountered, create a definition and add it to the list
+     * 5: whenever a definition or word class is encountered, add it to the most recent entry
+     * 6: continue until all steps are completed
+     */
+    class DictionaryQuery extends AsyncTask<String, Integer, String[]>{
+
+        @Override
+        protected String[] doInBackground(String... strings) {
+            //String results[] = new String[5];
+            try {
+                publishProgress(0);
+                //Establish connection
+                String urlString = strings[0];
+                URL url = new URL(urlString);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000 /* milliseconds */);
+                conn.setConnectTimeout(15000 /* milliseconds */);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+
+                //Starts the query
+                conn.connect();
+                Log.i("DictionaryQuery", "connection establishes");
+
+                //Create XML parser
+                XmlPullParser parser = Xml.newPullParser();
+                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+                parser.setInput(conn.getInputStream(), null);
+                parser.nextTag();
+                Log.e("DictionaryQuery", "pullparser created");
+
+                int entrycount = -1;
+                while(parser.getEventType() != XmlPullParser.END_DOCUMENT) {
+                    if (parser.getEventType() == XmlPullParser.START_TAG) {
+                        String tagName = parser.getName();
+                        if (tagName.equals("entry")) {
+                            Log.i("DictionaryQuery", "Entry Created");
+                            entrycount++;
+                            definitions.add(new DictionaryDefinition());
+                            definitions.get(entrycount).setDefinitionTitle(parser.getAttributeValue(null, "id"));
+                            publishProgress(25);
+                        }
+                        if (tagName.equals("fl")) {
+                            parser.next();
+                            definitions.get(entrycount).setWordClass(parser.getText());
+                            publishProgress(50);
+                        }
+                        if (tagName.equals("dt")) {
+                            parser.next();
+                            definitions.get(entrycount).setDefinition(parser.getText());
+                            publishProgress(75);
+                        }
+                    }
+                    parser.next();
+                }
+                publishProgress(100);
+
+            }catch (Exception ex)
+            {
+                Log.e("Crash!!", ex.getMessage());
+                ex.printStackTrace();
+            }
+            return null;
+        }
     }
 }
