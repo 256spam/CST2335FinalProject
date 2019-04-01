@@ -18,4 +18,12 @@
     <string name="dictButton2">Toggle View</string>
     <string name="dictButton3">Help</string>
     <string name="dictEditText1">Type your search Here</string>
+    <string name="newsfeedHelpMenuTitle">Help Menu</string>
+    <string name="newsfeedHelpMenuAuthorName">Newsfeed By: Patrick Carter</string>
+    <string name="newsfeedVersionNumber">Version Number: 1.0</string>
+    <string name="newsfeefHelpMenuUsage">To use this newsfeed app, type your search request and click on the search button to see the results.
+                                            A list of results will appear bellow the search bar with the titles of related news items. To view more information
+                                            on a news item, simply click on the item, and you will be redirected to the full article.</string>
+    <string name="newsDetailDialogTitle">View full article?</string>
+
 </resources>
