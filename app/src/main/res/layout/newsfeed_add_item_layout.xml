@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/newsfeedAddInfoTextView"
+        android:text="Fill in the following information: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:id="@+id/newsfeedAddTitleTextView"
+        android:text="Title: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddInfoTextView"
+       />
+
+
+    <EditText
+        android:id="@+id/newsfeedAddTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddInfoTextView"
+        android:layout_toRightOf="@id/newsfeedAddTitleTextView"
+       />
+
+    <TextView
+        android:id="@+id/newsfeedAddURLTextView"
+        android:text="URL: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddTitleEditText"
+        />
+
+
+    <EditText
+        android:id="@+id/newsfeedAddURLEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddTitleEditText"
+        android:layout_toRightOf="@id/newsfeedAddURLTextView"
+        />
+
+
+    <Button
+        android:id="@+id/newsfeedAddButtonADD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddURLEditText"
+        android:text="ADD"
+        />
+
+    <Button
+        android:id="@+id/newsfeedAddButtonCANCEL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddURLEditText"
+        android:layout_toRightOf="@+id/newsfeedAddButtonADD"
+        android:text="CANCEL"
+        />
+
+</RelativeLayout>

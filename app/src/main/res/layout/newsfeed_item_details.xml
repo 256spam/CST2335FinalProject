@@ -49,5 +49,22 @@
         android:text="Cancel"
         android:textAlignment="viewStart" />
 
+    <Button
+        android:id="@+id/newsfeedDialogAddItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedDialogOkButton"
+        android:text="Add item to list"
+        android:textAlignment="viewStart" />
+
+    <Button
+        android:id="@+id/newsfeedDialogDeleteItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedDialogCancelButton"
+        android:layout_toRightOf="@id/newsfeedDialogAddItem"
+        android:text="Delete"
+        android:textAlignment="viewStart" />
+
 
 </RelativeLayout>
