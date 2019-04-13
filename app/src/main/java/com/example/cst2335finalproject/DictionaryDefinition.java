@@ -1,11 +1,13 @@
 package com.example.cst2335finalproject;
 
 public class DictionaryDefinition{
+    long id;
     String definitonTitle;
     String definition;
     String wordClass;
 
-    public DictionaryDefinition(String t, String sd, String ld, String wc){
+    public DictionaryDefinition(Long i, String t, String ld, String wc){
+        id = i;
         definitonTitle = t;
         definition = ld;
         wordClass = wc;
@@ -20,6 +22,7 @@ public class DictionaryDefinition{
     public String getDefinitonTitle(){return definitonTitle;}
     public String getDefinition(){return definition;}
     public String getWordClass(){return wordClass;}
+    public Long getID(){return id;}
 
     public void setDefinitionTitle(String T){definitonTitle = T;}
     public void setDefinition(String D){definition = D;}
