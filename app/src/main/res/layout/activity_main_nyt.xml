@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".kevin.MainActivityNewYorkTimes">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_kn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/nyt_imageBut"
+        android:src="@drawable/nyt_banner"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true" />
+
+
+
+    <ListView
+        android:id="@+id/nyt_newsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <EditText
+        android:id="@+id/nyt_searchEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nyt_search"
+        android:layout_below="@+id/nyt_newsList"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/nyt_searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/nyt_progressBar"
+        android:layout_marginBottom="0dp"
+        android:text="@string/enter_nyt_kn" />
+    <Button
+        android:id="@+id/nyt_view_saved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nyt_searchButton"
+        android:layout_marginBottom="0dp"
+        android:text="@string/nyt_saved_article" />
+
+    <ProgressBar
+        android:id="@+id/nyt_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        />
+
+    <TextView
+        android:id="@+id/SearchCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nyt_progressBar"
+        android:layout_marginTop="-386dp"
+        android:text="Search Completed"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true" />
+
+
+
+</LinearLayout>

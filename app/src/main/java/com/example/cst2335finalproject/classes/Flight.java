@@ -8,7 +8,7 @@ package com.example.cst2335finalproject.classes;
  */
 public class Flight {
 
-
+    private long id;
     private String flightName, flightLatitude, flightLongitude, flightDirection,flightStatus,flightSpeed,flightAltitude;
     private String flightDepartingFrom,flightArrivingTo;
 
@@ -40,6 +40,21 @@ public class Flight {
 
     }
 
+    /**
+     * Gets the ID
+     * @return id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * Sets the id for database
+     * @param id
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
 
     /**
      * Gets the flight arrival details

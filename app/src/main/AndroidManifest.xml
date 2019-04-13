@@ -15,6 +15,10 @@
             android:label="Flight Tracker"
             android:parentActivityName=".MainActivity"></activity>
         <activity
+            android:name=".FlightDetailsActivity"
+            android:label="Flight Tracker"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
             android:name=".DictionaryActivity"
             android:label="Dictionary"
             android:parentActivityName=".MainActivity"></activity>
@@ -24,7 +28,7 @@
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".FlightTrackerActivity"
-            android:label="Flight Tracker"
+            android:label="FST"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".NewsfeedActivity"

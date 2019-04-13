@@ -18,7 +18,7 @@
         android:id="@+id/listFlightLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/listFlightAltitude"
+        android:text="@string/listFlightDA"
         android:layout_below="@+id/listFlightName"
         android:paddingLeft="10dp"
         />
