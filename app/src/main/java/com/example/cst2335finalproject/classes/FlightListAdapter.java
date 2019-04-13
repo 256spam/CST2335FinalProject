@@ -22,6 +22,10 @@ public class FlightListAdapter extends BaseAdapter {
     private ArrayList<Flight> flights;
     private Activity ctx;
 
+    /**
+     * constructor takes context
+     * @param ctx context
+     */
     public FlightListAdapter(Activity ctx){
         this.ctx = ctx;
         this.flights = new ArrayList<>();

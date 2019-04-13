@@ -7,11 +7,11 @@
     <string name="menubutton4">NYT Article Search</string>
     <string name="listFlightNameString">Flight</string>
     <string name="listFlightStatusString">Status</string>
-    <string name="listFlightAltitude">Altitude</string>
+    <string name="listFlightDA">Altitude</string>
     <string name="flightHelpAuthorNameString">Author: Albert Pham</string>
     <string name="flightHelpVersionNumberString">Version: 0.0.2</string>
     <string name="flightHelpHowToString">\nHOW TO USE\n</string>
-    <string name="flightHelpHowToInstructions">Saved items are in the main menu\n\nSearch icon in toolbar allows you to search by airport EX: YOW\n\nAfter searching, click on the item to add them to the saved list</string>
+    <string name="flightHelpHowToInstructions">Saved items are in the main menu\n\nSearch button will open another activity which allows you to search by airport.\n\nAfter searching, click on the item to add them to the saved list</string>
     <string name="flightHelpOkButton">Okay</string>
     <string name="flightDetailsRemoveButton">REMOVE</string>
     <string name="flightSearchEditHint">Search...</string>
@@ -27,4 +27,5 @@
     <string name="dictUndo">Undo</string>
     <string name="dictSave">Save Definiton</string>
     <string name="dictDefinitionTitle">Definition</string>
+    <string name="flightSearchAirportString">SEARCH AIRPORT</string>
 </resources>

@@ -1,12 +1,13 @@
 package com.example.cst2335finalproject;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,10 +16,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cst2335finalproject.classes.Flight;
+import com.example.cst2335finalproject.classes.FlightDetailFragment;
 import com.example.cst2335finalproject.classes.FlightListAdapter;
 
 import org.json.JSONArray;
@@ -41,6 +42,7 @@ import java.net.URL;
  */
 public class FlightSearchActivity extends AppCompatActivity {
 
+
     Toolbar searchToolbar;
     ListView listView;
     FlightListAdapter adapter;
@@ -62,6 +64,8 @@ public class FlightSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight_search);
 
+        final boolean isTablet = findViewById(R.id.flightSearchFragmentLocation) != null; //check if the FrameLayout is loaded
+
         progressViewLayout = findViewById(R.id.searchProgressViewLayout);
         listviewLayout = findViewById(R.id.searchListViewLayout);
 
@@ -77,54 +81,102 @@ public class FlightSearchActivity extends AppCompatActivity {
         listView = findViewById(R.id.flightListView);
         adapter = new FlightListAdapter(this);
 
+
+
+        FlightDetailFragment dFragment = new FlightDetailFragment(); //add a DetailFragment
         listView.setOnItemClickListener((parent, view, position, id) -> {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-            LayoutInflater inflater = getLayoutInflater();
-            View v = inflater.inflate(R.layout.flight_details_dialog,null);
-            builder.setView(v);
-
-            Flight flight = adapter.getItem(position);
-
-            TextView name = v.findViewById(R.id.flightDetailsName);
-            TextView status = v.findViewById(R.id.flightDetailsStatus);
-            TextView latitude = v.findViewById(R.id.flightDetailsLatitude);
-            TextView longitude = v.findViewById(R.id.flightDetailsLongitude);
-            TextView direction = v.findViewById(R.id.flightDetailsDirection);
-            TextView speed = v.findViewById(R.id.flightDetailsSpeed);
-            TextView altitude = v.findViewById(R.id.flightDetailsAltitude);
-
-            name.setText(flight.getFlightName());
-            status.setText("Status: " + flight.getFlightStatus());
-            speed.setText("Speed: " + flight.getFlightSpeed());
-            latitude.setText("Latitude: " + flight.getFlightLatitude());
-            longitude.setText("Longitude: " + flight.getFlightLongitude());
-            direction.setText("Direction: " + flight.getFlightDirection());
-            altitude.setText("Altitude: " + flight.getFlightAltitude());
+        Flight flight = adapter.getItem(position);
 
 
-            builder.setNegativeButton(R.string.flightSearchDetailSaveButton, (dialog, which) -> {
-                // TODO: Save it in the database of saved items
-                Toast.makeText(this, "Soon to be Saved", Toast.LENGTH_SHORT).show();
-                dialog.cancel();
-            });
+            Bundle dataToPass = new Bundle();
 
-            builder.create().show();
+            dataToPass.putString("isSave","1");
+            dataToPass.putString("name", flight.getFlightName());
+            dataToPass.putString("status",flight.getFlightStatus());
+            dataToPass.putString("speed", flight.getFlightSpeed());
+            dataToPass.putString("latitude", flight.getFlightLatitude());
+            dataToPass.putString("longitude", flight.getFlightLongitude());
+            dataToPass.putString("direction", flight.getFlightDirection());
+            dataToPass.putString("altitude", flight.getFlightAltitude());
+            dataToPass.putString("arrivingTo",flight.getFlightArrivingTo());
+            dataToPass.putString("departingFrom", flight.getFlightDepartingFrom());
+
+
+
+
+             if (isTablet) {
+
+
+                 dFragment.removeLast();
+                 dFragment.setArguments(dataToPass); //pass it a bundle for information
+                 dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                 FlightSearchActivity.this.getSupportFragmentManager()
+                         .beginTransaction()
+                         .add(R.id.flightSearchFragmentLocation, dFragment) //Add the fragment in FrameLayout
+                         .addToBackStack("AnyName") //make the back button undo the transaction
+                         .commit(); //actually load the fragment.
+             } else {
+                 // If it's a phone
+
+                 Intent intent = new Intent(FlightSearchActivity.this, FlightDetailsActivity.class);
+                 intent.putExtra("isSave",1);
+                 intent.putExtra("name", flight.getFlightName());
+                 intent.putExtra("status",flight.getFlightStatus());
+                 intent.putExtra("speed", flight.getFlightSpeed());
+                 intent.putExtra("latitude", flight.getFlightLatitude());
+                 intent.putExtra("longitude", flight.getFlightLongitude());
+                 intent.putExtra("direction", flight.getFlightDirection());
+                 intent.putExtra("altitude", flight.getFlightAltitude());
+                 intent.putExtra("arrivingTo",flight.getFlightArrivingTo());
+                 intent.putExtra("departingFrom", flight.getFlightDepartingFrom());
+
+                 startActivity(intent);
+             }
+
+
+
+
+
         });
+
+
+
+        SharedPreferences pref = getSharedPreferences("prevSearch",Context.MODE_PRIVATE);
+        String searchString = pref.getString("airportSearched", getResources().getString(R.string.flightSearchEditHint));
+        searchEdit.setHint(searchString);
+
+
 
         listView.setAdapter(adapter);
 
         searchButton.setOnClickListener(v -> {
+
+            // Shared pref saves the previous search
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("airportSearched", searchEdit.getText().toString().toUpperCase());
+            editor.apply();
+
+
             progressViewLayout.setVisibility(View.VISIBLE);
             listviewLayout.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.VISIBLE);
             // Clears the search before searching again
             adapter.clearFlightList();
             FlightQuery something  = new FlightQuery();
-            something.execute("https://aviation-edge.com/v2/public/flights?key=51db2e-eaf120&depIata="+searchEdit.getText(),
-                    "https://aviation-edge.com/v2/public/flights?key=51db2e-eaf120&arrIata="+searchEdit.getText());
+            // Personal account key
+//            something.execute("https://aviation-edge.com/v2/public/flights?key=51db2e-eaf120&depIata="+searchEdit.getText(),
+//                    "https://aviation-edge.com/v2/public/flights?key=51db2e-eaf120&arrIata="+searchEdit.getText());
+
+            // Algonquin college key
+            something.execute("https://aviation-edge.com/v2/public/flights?key=65e13d-5d40f1&depIata="+searchEdit.getText(),
+                    "https://aviation-edge.com/v2/public/flights?key=65e13d-5d40f1&arrIata="+searchEdit.getText());
+
+
+
+
         });
     }
+
 
 
     /**
@@ -217,6 +269,9 @@ public class FlightSearchActivity extends AppCompatActivity {
                     temp.setFlightDepartingFrom(departure.getString("iataCode"));
                     temp.setFlightArrivingTo(arrival.getString("iataCode"));
 
+
+
+
                     adapter.addFlight(temp);
                 }
 
@@ -255,6 +310,8 @@ public class FlightSearchActivity extends AppCompatActivity {
                     temp.setFlightDepartingFrom(departure.getString("iataCode"));
                     temp.setFlightArrivingTo(arrival.getString("iataCode"));
 
+
+
                     adapter.addFlight(temp);
                 }
 
@@ -264,6 +321,7 @@ public class FlightSearchActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(),"Something went wrong with the API",Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
             return null;
@@ -283,8 +341,6 @@ public class FlightSearchActivity extends AppCompatActivity {
             progressBar.setVisibility(View.INVISIBLE);
         }
     }
-
-
 
 
 }

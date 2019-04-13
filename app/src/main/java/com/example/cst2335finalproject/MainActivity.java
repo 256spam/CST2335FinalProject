@@ -87,12 +87,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(nextPage);
                 break;
 
-
-                case R.id.newYorkTimesMenuItem:
-                    nextPage = new Intent(MainActivity.this, NYTActivity.class);
-                    startActivity(nextPage);
+            case R.id.newYorkTimesMenuItem:
+                nextPage = new Intent(MainActivity.this, NYTActivity.class);
+                startActivity(nextPage);
                 break;
-
         }
         return true;
     }
