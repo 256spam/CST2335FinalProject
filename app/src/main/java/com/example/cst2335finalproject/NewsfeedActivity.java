@@ -3,7 +3,9 @@ package com.example.cst2335finalproject;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,13 +45,16 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     ArrayList<NewsHolder> newsItems;
     ArrayList<NewsQuery> networkThreads;
+
+    SharedPreferences sp;
     private EditText searchCriteria;
     private ProgressBar newsfeedProgBar;
     private String searchTerm;
     NewsFeedAdapter adapter;
     Toolbar toolbar;
     NewsfeedDatabaseOpener dbOpener;
-    SQLiteDatabase db;
+    NewsfeedSavedDatabase savedDB;
+    SQLiteDatabase db, dbs;
     int positionClicked;
 
     public NewsfeedActivity() {
@@ -79,30 +85,41 @@ public class NewsfeedActivity extends AppCompatActivity {
         Button searchButton = findViewById(R.id.searchButton);
         newsfeedProgBar = findViewById(R.id.newsfeedProgBar);
 
+        sp = getSharedPreferences("ReserveName", Context.MODE_PRIVATE);
+        String savedSearchTerm = sp.getString("ReserveName", "CST2335");
+        searchCriteria.setText(savedSearchTerm);
+
         adapter = new NewsFeedAdapter();
         newsfeedList.setAdapter(adapter);
 
         //get a datbase
         dbOpener = new NewsfeedDatabaseOpener(this);
+        savedDB = new NewsfeedSavedDatabase(this);
+
         db = dbOpener.getWritableDatabase();
+        dbs = savedDB.getWritableDatabase();
+
+
 
         //query all the results from the database:
-        String [] columns = {NewsfeedDatabaseOpener.COL_ID, NewsfeedDatabaseOpener.COL_Title, NewsfeedDatabaseOpener.COL_URL};
+        String [] columns = {NewsfeedDatabaseOpener.COL_ID, NewsfeedDatabaseOpener.COL_Title, NewsfeedDatabaseOpener.COL_URL, NewsfeedDatabaseOpener.COL_TEXT};
         Cursor results = db.query(false, NewsfeedDatabaseOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
 
         //find the column indices:
-        int messageColumnIndex = results.getColumnIndex(NewsfeedDatabaseOpener.COL_Title);
-        int messageTypeColumnIndex = results.getColumnIndex(NewsfeedDatabaseOpener.COL_URL);
+        int titleColumnIndex = results.getColumnIndex(NewsfeedDatabaseOpener.COL_Title);
+        int urlColumnIndex = results.getColumnIndex(NewsfeedDatabaseOpener.COL_URL);
+        int textColumnIndex = results.getColumnIndex(NewsfeedDatabaseOpener.COL_TEXT);
         int idColumnIndex = results.getColumnIndex(NewsfeedDatabaseOpener.COL_ID);
 
 
         while(results.moveToNext())
         {
-            String title = results.getString(messageColumnIndex);
-            String url = results.getString(messageTypeColumnIndex);
+            String title = results.getString(titleColumnIndex);
+            String url = results.getString(urlColumnIndex);
+            String text = results.getString(textColumnIndex);
             long id = results.getLong(idColumnIndex);
-            newsItems.add(new NewsHolder(title, url, "No Text", id));
+            newsItems.add(new NewsHolder(title, url, text, id));
         }
 
         searchButton.setOnClickListener(c -> {
@@ -142,6 +159,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
             TextView newsItem = details.findViewById(R.id.dialogNewsItem);
             newsItem.setText(newsItems.get(position).getNewsItem());
+            newsItem.setGravity(Gravity.CENTER);
 
             TextView newsSubItem = details.findViewById(R.id.dialogNewsSubItem);
             newsSubItem.setText("Article available here:  " + newsItems.get(position).getNewsSubItem());
@@ -152,7 +170,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
             Button delete = details.findViewById(R.id.newsfeedDialogDeleteItem);
 
-            Button add = details.findViewById(R.id.newsfeedDialogAddItem);
+            Button save = details.findViewById(R.id.newsfeedDialogAddItem);
 
             builder.setView(details);
             AlertDialog dialog = builder.create();
@@ -161,6 +179,15 @@ public class NewsfeedActivity extends AppCompatActivity {
             cancel.setOnClickListener(c->{dialog.hide();});
 
             ok.setOnClickListener(c->{
+
+                NewsHolder chosenOne = newsItems.get(position);
+                Intent nextPage = new Intent(NewsfeedActivity.this, NewsfeedReadArticle.class);
+                nextPage.putExtra("Title", chosenOne.getNewsItem());
+                nextPage.putExtra("Url", chosenOne.getNewsSubItem());
+                nextPage.putExtra("Text", chosenOne.getNewsText());
+                nextPage.putExtra("Id", id);
+
+                startActivity(nextPage);
 
             });
 
@@ -172,54 +199,22 @@ public class NewsfeedActivity extends AppCompatActivity {
 
             });
 
-            add.setOnClickListener(c->{
+            save.setOnClickListener(c->{
 
+                //add to the database and get the new ID
+                ContentValues newRowValues = new ContentValues();
+                //put string title in the Title column:
+                newRowValues.put(NewsfeedDatabaseOpener.COL_Title, newsItems.get(position).getNewsItem());
+                //put string url in the URL column:
+                newRowValues.put(NewsfeedDatabaseOpener.COL_URL, newsItems.get(position).getNewsSubItem());
+                //put string text in the TEXT column:
+                newRowValues.put(NewsfeedDatabaseOpener.COL_TEXT, newsItems.get(position).getNewsText());
+                //insert in the database:
+                long newId = dbs.insert(NewsfeedDatabaseOpener.TABLE_NAME, null, newRowValues);
 
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(NewsfeedActivity.this);
-                @SuppressLint("InflateParams") View addItem = getLayoutInflater().inflate(R.layout.newsfeed_add_item_layout, null);
-
+                Toast.makeText(NewsfeedActivity.this, "Item Saved!", Toast.LENGTH_LONG).show();
                 dialog.hide();
-
-                builder2.setView(addItem);
-                AlertDialog dialog2 = builder2.create();
-                dialog2.show();
-
-
-                Button ADD = addItem.findViewById(R.id.newsfeedAddButtonADD);
-                Button CANCEL = addItem.findViewById(R.id.newsfeedAddButtonCANCEL);
-
-                EditText addTitle = addItem.findViewById(R.id.newsfeedAddTitleEditText);
-                EditText addUrl = addItem.findViewById(R.id.newsfeedAddURLEditText);
-
-                ADD.setOnClickListener(a->{
-
-                    //add to the database and get the new ID
-                    ContentValues newRowValues = new ContentValues();
-                    //put string name in the MESSAGE column:
-                    newRowValues.put(NewsfeedDatabaseOpener.COL_Title, addTitle.getText().toString());
-                    //put string email in the MESSAGE_TYPE column:
-                    newRowValues.put(NewsfeedDatabaseOpener.COL_URL, addUrl.getText().toString());
-                    //insert in the database:
-                    long newId = db.insert(NewsfeedDatabaseOpener.TABLE_NAME, null, newRowValues);
-
-                    newsItems.add(new NewsHolder(addTitle.getText().toString(), addUrl.getText().toString(), "No Text", newId));
-
-                    adapter.notifyDataSetChanged();
-
-                    dialog2.hide();
-
-                    Toast.makeText(this, "Added " + addTitle.getText().toString() + " Id: " + newId + " Scroll to the bottom to see new addition.", Toast.LENGTH_LONG).show();
-
-
                 });
-
-                CANCEL.setOnClickListener(a->{
-                    dialog2.hide();
-                });
-
-            });
-
-
 
         });
 
@@ -237,7 +232,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.news_feed_nav, menu);
+        inflater.inflate(R.menu.newsfeed_nav, menu);
 
         return true;
     }
@@ -252,29 +247,29 @@ public class NewsfeedActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent nextPage;
+        final Intent[] nextPage = new Intent[1];
 
         switch (item.getItemId()) {
 
             case R.id.dictionaryActivityMenuItem:
-                nextPage = new Intent(NewsfeedActivity.this, DictionaryActivity.class);
-                startActivity(nextPage);
+                nextPage[0] = new Intent(NewsfeedActivity.this, DictionaryActivity.class);
+                startActivity(nextPage[0]);
                 break;
 
             case R.id.newsfeedActivityMenuItem:
-                nextPage = new Intent(NewsfeedActivity.this, NewsfeedActivity.class);
-                startActivity(nextPage);
+                nextPage[0] = new Intent(NewsfeedActivity.this, NewsfeedActivity.class);
+                startActivity(nextPage[0]);
                 break;
 
             case R.id.flightStatusTrackerMenuItem:
-                nextPage = new Intent(NewsfeedActivity.this, FlightTrackerActivity.class);
-                startActivity(nextPage);
+                nextPage[0] = new Intent(NewsfeedActivity.this, FlightTrackerActivity.class);
+                startActivity(nextPage[0]);
                 break;
 
 
             case R.id.newYorkTimesMenuItem:
-                nextPage = new Intent(NewsfeedActivity.this, NYTActivity.class);
-                startActivity(nextPage);
+                nextPage[0] = new Intent(NewsfeedActivity.this, NYTActivity.class);
+                startActivity(nextPage[0]);
                 break;
 
 
@@ -288,6 +283,47 @@ public class NewsfeedActivity extends AppCompatActivity {
                 dialog.show();
                 break;
 
+            case R.id.menu:
+
+                AlertDialog.Builder menuBuilder = new AlertDialog.Builder(NewsfeedActivity.this);
+                @SuppressLint("InflateParams") View menuDetails = getLayoutInflater().inflate(R.layout.newsfeed_popup_menu, null);
+
+                Button mainMenu = menuDetails.findViewById(R.id.newsfeedPopUpGoToMainMenu);
+
+                Button cancel = menuDetails.findViewById(R.id.newsfeedPopUpCancelButton);
+
+                Button viewSavedArticles = menuDetails.findViewById(R.id.newsfeedPopUpGoToSavedArticles);
+
+                Button visitUrl = menuDetails.findViewById(R.id.newsfeedPopUpVisitUrl);
+                visitUrl.setText("Undecided");
+
+                menuBuilder.setView(menuDetails);
+                AlertDialog menuDialog = menuBuilder.create();
+                menuDialog.show();
+
+                mainMenu.setOnClickListener(c -> {
+
+                    nextPage[0] = new Intent(NewsfeedActivity.this, MainActivity.class);
+                    startActivity(nextPage[0]);
+
+                });
+
+                viewSavedArticles.setOnClickListener(c->{
+
+                    nextPage[0] = new Intent(NewsfeedActivity.this, NewsfeedSavedArticles.class);
+                    startActivity(nextPage[0]);
+
+
+                });
+
+                cancel.setOnClickListener(c->{
+                    menuDialog.hide();
+                });
+
+
+
+
+                break;
 
         }
         return true;
@@ -335,13 +371,13 @@ public class NewsfeedActivity extends AppCompatActivity {
             View view;
 
             NewsHolder thisRow = getItem(position);
-            view = inflater.inflate(R.layout.news_feed_layout, parent, false);
+            view = inflater.inflate(R.layout.newsfeed_layout, parent, false);
 
-            TextView message = view.findViewById(R.id.newsFeedItem);
-            TextView messageType = view.findViewById(R.id.newsFeedSubItem);
+            TextView newsTitle = view.findViewById(R.id.newsFeedItem);
+            TextView newsUrl = view.findViewById(R.id.newsFeedSubItem);
 
-            message.setText(thisRow.getNewsItem());
-            messageType.setText(thisRow.getNewsSubItem());
+            newsTitle.setText(thisRow.getNewsItem());
+            newsUrl.setText(thisRow.getNewsSubItem());
 
             return view;
 
@@ -469,10 +505,12 @@ public class NewsfeedActivity extends AppCompatActivity {
 
                             //add to the database and get the new ID
                             ContentValues newRowValues = new ContentValues();
-                            //put string name in the MESSAGE column:
+                            //put string title in the Title column:
                             newRowValues.put(NewsfeedDatabaseOpener.COL_Title, title);
-                            //put string email in the MESSAGE_TYPE column:
+                            //put string url in the URL column:
                             newRowValues.put(NewsfeedDatabaseOpener.COL_URL, urlText);
+                            //put string text in the TEXT column:
+                            newRowValues.put(NewsfeedDatabaseOpener.COL_TEXT, articleText);
                             //insert in the database:
                             long newId = db.insert(NewsfeedDatabaseOpener.TABLE_NAME, null, newRowValues);
 
@@ -502,6 +540,21 @@ public class NewsfeedActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             newsfeedProgBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //get an editor object
+        SharedPreferences.Editor editor = sp.edit();
+
+        //save what was typed under the name "ReserveName"
+        String textEntered = searchCriteria.getText().toString();
+        editor.putString("ReserveName", textEntered);
+
+        //write it to disk:
+        editor.commit();
     }
 
 }

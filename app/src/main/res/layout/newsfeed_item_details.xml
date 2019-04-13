@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -8,7 +9,7 @@
 
     <TextView
         android:id="@+id/newsDetailDialogtitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/newsDetailDialogTitle"
         android:textAlignment="center"
@@ -16,55 +17,55 @@
 
     <TextView
         android:id="@+id/dialogNewsItem"
-        android:text="TEST"
-        android:layout_below="@+id/newsDetailDialogtitle"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14dp"/>
+        android:layout_below="@+id/newsDetailDialogtitle"
+        android:text="TEST"
+        android:textAlignment="textStart"
+        android:textSize="12dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dialogNewsSubItem"
-        android:text="TEST 2"
-        android:layout_below="@+id/dialogNewsItem"
-        android:textStyle="italic"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12dp"/>
+        android:layout_below="@+id/dialogNewsItem"
+        android:text="TEST 2"
+        android:textAlignment="textStart"
+        android:textSize="12dp"
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/newsfeedDialogOkButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialogNewsSubItem"
         android:text="View Article"
-        android:textAlignment="viewStart" />
-
-    <Button
-        android:id="@+id/newsfeedDialogCancelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dialogNewsSubItem"
-        android:layout_toRightOf="@id/newsfeedDialogOkButton"
-        android:text="Cancel"
-        android:textAlignment="viewStart" />
+        tools:textAlignment="center" />
 
     <Button
         android:id="@+id/newsfeedDialogAddItem"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/newsfeedDialogOkButton"
-        android:text="Add item to list"
-        android:textAlignment="viewStart" />
+        android:text="Save Article"
+        tools:textAlignment="center" />
 
     <Button
         android:id="@+id/newsfeedDialogDeleteItem"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newsfeedDialogCancelButton"
-        android:layout_toRightOf="@id/newsfeedDialogAddItem"
+        android:layout_below="@+id/newsfeedDialogAddItem"
         android:text="Delete"
-        android:textAlignment="viewStart" />
+        tools:textAlignment="center" />
+
+    <Button
+        android:id="@+id/newsfeedDialogCancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedDialogDeleteItem"
+        android:text="Cancel"
+        tools:textAlignment="center" />
 
 
 </RelativeLayout>

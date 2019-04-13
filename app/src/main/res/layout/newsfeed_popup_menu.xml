@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/newsfeedPopUpTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What would you like to do?"
+        android:textAlignment="center"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/newsfeedPopUpVisitUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedPopUpTitle"
+        android:text="Visit Web Page"
+        tools:textAlignment="center" />
+
+    <Button
+        android:id="@+id/newsfeedPopUpGoToMainMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedPopUpVisitUrl"
+        android:text="Go To Main Menu"
+        tools:textAlignment="center" />
+
+    <Button
+        android:id="@+id/newsfeedPopUpGoToSavedArticles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedPopUpGoToMainMenu"
+        android:text="View Saved Articles"
+        tools:textAlignment="center" />
+
+    <Button
+        android:id="@+id/newsfeedPopUpCancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedPopUpGoToSavedArticles"
+        android:text="Cancel"
+        tools:textAlignment="center" />
+
+
+</RelativeLayout>

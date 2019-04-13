@@ -8,10 +8,11 @@
 
     <TextView
         android:id="@+id/newsfeedAddInfoTextView"
-        android:text="Fill in the following information: "
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"/>
+        android:text="Fill in the following information"
+        android:textAlignment="center"
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/newsfeedAddTitleTextView"
@@ -26,8 +27,8 @@
         android:id="@+id/newsfeedAddTitleEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newsfeedAddInfoTextView"
-        android:layout_toRightOf="@id/newsfeedAddTitleTextView"
+        android:layout_below="@+id/newsfeedAddTitleTextView"
+
        />
 
     <TextView
@@ -43,25 +44,39 @@
         android:id="@+id/newsfeedAddURLEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newsfeedAddTitleEditText"
-        android:layout_toRightOf="@id/newsfeedAddURLTextView"
+        android:layout_below="@+id/newsfeedAddURLTextView"
+
         />
 
-
-    <Button
-        android:id="@+id/newsfeedAddButtonADD"
+    <TextView
+        android:id="@+id/newsfeedAddTextView"
+        android:text="Text: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/newsfeedAddURLEditText"
+        />
+
+
+    <EditText
+        android:id="@+id/newsfeedAddTextEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddTextView"
+        />
+
+    <Button
+        android:id="@+id/newsfeedAddButtonADD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddTextEditText"
         android:text="ADD"
         />
 
     <Button
         android:id="@+id/newsfeedAddButtonCANCEL"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newsfeedAddURLEditText"
-        android:layout_toRightOf="@+id/newsfeedAddButtonADD"
+        android:layout_below="@+id/newsfeedAddButtonADD"
         android:text="CANCEL"
         />
 

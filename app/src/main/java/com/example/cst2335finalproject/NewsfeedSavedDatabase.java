@@ -8,8 +8,8 @@ import android.util.Log;
 /**
  * class is used to create a new database for the newsfeed activity.
  */
-public class NewsfeedDatabaseOpener extends SQLiteOpenHelper  {
-    public static final String DATABASE_NAME = "NewsfeedItems";
+public class NewsfeedSavedDatabase extends SQLiteOpenHelper  {
+    public static final String DATABASE_NAME = "NewsfeedItemsSaved";
     public static final int VERSION_NUM = 1;
     public static final String TABLE_NAME = "Newsfeed";
     public static final String COL_ID = "_id";
@@ -17,7 +17,7 @@ public class NewsfeedDatabaseOpener extends SQLiteOpenHelper  {
     public static final String COL_TEXT= "TEXT";
     public static final String COL_URL = "URL";
 
-    public NewsfeedDatabaseOpener(Activity ctx) {
+    public NewsfeedSavedDatabase(Activity ctx) {
         //The factory parameter should be null, unless you know a lot about Database Memory management
         super(ctx, DATABASE_NAME, null, VERSION_NUM );
     }
@@ -66,5 +66,4 @@ public class NewsfeedDatabaseOpener extends SQLiteOpenHelper  {
         //Create a new table:
         onCreate(db);
     }
-
 }
