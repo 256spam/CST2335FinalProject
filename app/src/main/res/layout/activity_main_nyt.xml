@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".kevin.MainActivityNewYorkTimes">
+    tools:context=".NYTActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_kn"
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:id="@+id/nyt_imageBut"
-        android:src="@drawable/nyt_banner"
+        android:src="@drawable/new_york_times"
         android:scaleType="fitXY"
         android:layout_alignParentTop="true" />
 
