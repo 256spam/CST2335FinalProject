@@ -34,11 +34,26 @@
             android:text="STATUS"
             />
         <TextView
-            android:id="@+id/flightDetailsLocation"
+            android:id="@+id/flightDetailsLatitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOCATION"
+            android:text="LATITUDE"
             />
+        <TextView
+            android:id="@+id/flightDetailsLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LONGITUDE"
+            />
+        <TextView
+            android:id="@+id/flightDetailsDirection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DIRECTION"
+            />
+
+
+
         <TextView
             android:id="@+id/flightDetailsSpeed"
             android:layout_width="match_parent"
@@ -52,9 +67,14 @@
             android:text="ALTITUDE"
             />
 
-
+        <Button
+            android:id="@+id/saveRemoveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/flightDetailsRemoveButton"/>
 
     </LinearLayout>
+
 
 
 </LinearLayout>

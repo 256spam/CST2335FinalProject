@@ -34,7 +34,7 @@ public class DictionaryAdapter extends ArrayAdapter<DictionaryDefinition> {
 
         icon.setImageResource(R.drawable.main_dic);
         title.setText(definition.getDefinitonTitle());
-        shortDefinition.setText(definition.getShortDefintion());
+        shortDefinition.setText(definition.getDefinition());
         return convertView;
     }
 }

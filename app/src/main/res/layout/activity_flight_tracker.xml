@@ -1,47 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FlightTrackerActivity">
-
-
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/mainToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
-
     </android.support.v7.widget.Toolbar>
 
-
-
-
-
     <LinearLayout
+        android:id="@+id/listViewLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@+id/mainToolbar">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:visibility="visible"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+        android:layout_below="@+id/mainToolbar"
+        android:layout_above="@+id/flightSearchAirportButton">
 
         <ListView
             android:id="@+id/flightListView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/controls"></ListView>
-
+            ></ListView>
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/flightSearchAirportButton"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/flightSearchAirportString"/>
 
 </RelativeLayout>

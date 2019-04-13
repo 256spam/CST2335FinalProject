@@ -15,11 +15,26 @@
     <string name="flightHelpOkButton">Okay</string>
     <string name="flightDetailsRemoveButton">REMOVE</string>
     <string name="flightSearchEditHint">Search...</string>
+    <string name="listFlightDA">Altitude</string>
+    <string name="flightHelpAuthorNameString">Author: Albert Pham</string>
+    <string name="flightHelpVersionNumberString">Version: 0.0.2</string>
+    <string name="flightHelpHowToString">\nHOW TO USE\n</string>
+    <string name="flightHelpHowToInstructions">Saved items are in the main menu\n\nSearch button will open another activity which allows you to search by airport.\n\nAfter searching, click on the item to add them to the saved list</string>
+    <string name="flightHelpOkButton">Okay</string>
+    <string name="flightDetailsRemoveButton">REMOVE</string>
+    <string name="flightSearchEditHint">Search...</string>
+    <string name="flightSearchDetailSaveButton">SAVE</string>
     <string name="dictButton1">Search</string>
     <string name="dictButton2">Toggle View</string>
     <string name="dictButton3">Help</string>
     <string name="dictEditText1">Type your search Here</string>
-
+    <string name="dictHelpMenuTitle">Help and Info</string>
+    <string name="dictHelpMenuText">Author: Peter Best \n Version number: 0.3 \n Instructions: Type in the Search field the term you wish to search for and click the search button. Tapping on a definition will bring up more detailed information and the option to save it to local storage. To view any locally stored definitions, hit the toggle mode button, though this will disable search functionality.</string>
+    <string name="dictCloseOption">Close</string>
+    <string name="dictWIP">Saved to local storage</string>
+    <string name="dictUndo">Close</string>
+    <string name="dictSave">Save Definiton</string>
+    <string name="dictDefinitionTitle">Definition</string>
     <string name="newsfeedHelpMenuTitle">Help Menu</string>
     <string name="newsfeedHelpMenuAuthorName">Newsfeed By: Patrick Carter</string>
     <string name="newsfeedVersionNumber">Version Number: 1.0</string>
@@ -28,5 +43,6 @@
                                             on a news item, simply click on a news article you are interested in, then click "read full article" to be redirected to the full article.
                                             From there, you will be able to save an article to your phone, if you would like to read it later.</string>
     <string name="newsDetailDialogTitle">View full article?</string>
-
+    <string name="newsDetailDialogTitle">View full article?</string>
+    <string name="flightSearchAirportString">SEARCH AIRPORT</string>
 </resources>

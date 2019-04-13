@@ -20,7 +20,7 @@
 
     <RelativeLayout
         android:id="@+id/searchBar"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/searchToolbar">
 
@@ -46,7 +46,7 @@
 
     <LinearLayout
         android:id="@+id/searchProgressViewLayout"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="invisible"
@@ -64,7 +64,7 @@
 
     <LinearLayout
         android:id="@+id/searchListViewLayout"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="invisible"
@@ -77,6 +77,15 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/controls"></ListView>
     </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/flightSearchFragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchToolbar"
+        android:background="@color/colorWhite"
+        android:layout_toEndOf="@id/searchListViewLayout"/>
 
 
 </RelativeLayout>

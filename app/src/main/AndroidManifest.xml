@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cst2335finalproject">
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,18 +16,27 @@
         <activity android:name=".NewsfeedSavedArticles" />
         <activity android:name=".NewsfeedReadArticle" />
         <activity android:name=".NewsfeedDatabaseOpener" />
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".FlightSearchActivity"
             android:label="Flight Tracker"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".FlightDetailsActivity"
+            android:label="Flight Tracker"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
             android:name=".DictionaryActivity"
             android:label="Dictionary"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".DictionaryEmptyActivity"
+            android:label="Dictionary"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
             android:name=".FlightTrackerActivity"
-            android:label="Flight Tracker"
-            android:parentActivityName=".MainActivity" />
+            android:label="FST"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".NewsfeedActivity"
             android:label="News Feed"
@@ -44,6 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
