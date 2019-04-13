@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -269,9 +270,6 @@ public class FlightSearchActivity extends AppCompatActivity {
                     temp.setFlightDepartingFrom(departure.getString("iataCode"));
                     temp.setFlightArrivingTo(arrival.getString("iataCode"));
 
-
-
-
                     adapter.addFlight(temp);
                 }
 
@@ -321,8 +319,7 @@ public class FlightSearchActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
-                Toast.makeText(getApplicationContext(),"Something went wrong with the API",Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+                Log.i("FlightQuery: ","No result for search");
             }
             return null;
         }
