@@ -8,32 +8,47 @@
         android:icon="@drawable/main_dic"
         android:title="Dictionary"
         android:orderInCategory="10"
-        app:showAsAction="always"></item>
+        app:showAsAction="always">
+    </item>
 
     <item
         android:id="@+id/newsfeedActivityMenuItem"
         android:icon="@drawable/main_news"
         android:title="Newsfeed"
         android:orderInCategory="20"
-        app:showAsAction="always"></item>
+        app:showAsAction="always">
+    </item>
     <item
         android:id="@+id/flightStatusTrackerMenuItem"
         android:icon="@drawable/main_fst"
         android:orderInCategory="30"
         android:title="Flight Status Tracker"
-        app:showAsAction="always"></item>
+        app:showAsAction="always">
+
+    </item>
     <item
         android:id="@+id/newYorkTimesMenuItem"
         android:icon="@drawable/main_nyt"
         android:orderInCategory="30"
         android:title="New York Times"
-        app:showAsAction="always"></item>
+        app:showAsAction="always">
+
+    </item>
 
     <item
         android:id="@+id/help"
         android:icon="@drawable/info_icon"
         android:orderInCategory="30"
         android:title="Help"
-        app:showAsAction="always"></item>
+        app:showAsAction="always">
+    </item>
+
+    <item
+        android:id="@+id/menu"
+        android:icon="@drawable/newsfeed_menu_icon"
+        android:orderInCategory="30"
+        android:title="Menu"
+        app:showAsAction="always">
+    </item>
 
 </menu>

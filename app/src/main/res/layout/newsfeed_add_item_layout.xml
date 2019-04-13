@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/newsfeedAddInfoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fill in the following information"
+        android:textAlignment="center"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/newsfeedAddTitleTextView"
+        android:text="Title: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddInfoTextView"
+       />
+
+
+    <EditText
+        android:id="@+id/newsfeedAddTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddTitleTextView"
+
+       />
+
+    <TextView
+        android:id="@+id/newsfeedAddURLTextView"
+        android:text="URL: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddTitleEditText"
+        />
+
+
+    <EditText
+        android:id="@+id/newsfeedAddURLEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddURLTextView"
+
+        />
+
+    <TextView
+        android:id="@+id/newsfeedAddTextView"
+        android:text="Text: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddURLEditText"
+        />
+
+
+    <EditText
+        android:id="@+id/newsfeedAddTextEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddTextView"
+        />
+
+    <Button
+        android:id="@+id/newsfeedAddButtonADD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddTextEditText"
+        android:text="ADD"
+        />
+
+    <Button
+        android:id="@+id/newsfeedAddButtonCANCEL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsfeedAddButtonADD"
+        android:text="CANCEL"
+        />
+
+</RelativeLayout>

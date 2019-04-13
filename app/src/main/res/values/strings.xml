@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CST2335 Final Project</string>
     <string name="menubutton1">Dictionary</string>
@@ -31,7 +32,8 @@
     <string name="newsfeedVersionNumber">Version Number: 1.0</string>
     <string name="newsfeefHelpMenuUsage">To use this newsfeed app, type your search request and click on the search button to see the results.
                                             A list of results will appear bellow the search bar with the titles of related news items. To view more information
-                                            on a news item, simply click on the item, and you will be redirected to the full article.</string>
+                                            on a news item, simply click on a news article you are interested in, then click "read full article" to be redirected to the full article.
+                                            From there, you will be able to save an article to your phone, if you would like to read it later.</string>
     <string name="newsDetailDialogTitle">View full article?</string>
     <string name="flightSearchAirportString">SEARCH AIRPORT</string>
 </resources>
