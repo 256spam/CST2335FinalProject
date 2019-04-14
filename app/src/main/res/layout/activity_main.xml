@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,53 +11,27 @@
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:background="@color/colorPrimary">
 
     </android.support.v7.widget.Toolbar>
 
+    <ImageView
+        android:id="@+id/titleImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/main_title"
+        android:layout_below="@id/main_toolbar"
+        android:layout_centerInParent="true"/>
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/main_TextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainInfoText"
+        android:layout_below="@id/titleImage"
+        android:gravity="center"
+        android:layout_centerInParent="true"/>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
 
-            <Button
-                android:id="@+id/menuButton1"
-                android:layout_width="0dip"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:text="@string/menubutton1" />
-
-            <Button
-                android:id="@+id/menuButton2"
-                android:layout_width="0dip"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:text="@string/menubutton2" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:id="@+id/menuButton3"
-                android:layout_width="0dip"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:text="@string/menubutton3" />
-
-            <Button
-                android:id="@+id/menuButton4"
-                android:layout_width="0dip"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:text="@string/menubutton4" />
-        </TableRow>
-
-    </TableLayout>
-
-</LinearLayout>
+</RelativeLayout>

@@ -2,13 +2,11 @@ package com.example.cst2335finalproject;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +18,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.net.Uri;
-import android.widget.Toast;
 
 
 /**

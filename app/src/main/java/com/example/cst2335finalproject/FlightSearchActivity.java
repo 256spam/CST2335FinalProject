@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.cst2335finalproject.classes.Flight;
 import com.example.cst2335finalproject.classes.FlightDetailFragment;

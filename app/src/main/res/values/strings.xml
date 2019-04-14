@@ -5,6 +5,7 @@
     <string name="menubutton2">Flight Tracker</string>
     <string name="menubutton3">Newsfeed</string>
     <string name="menubutton4">NYT Article Search</string>
+    <string name="mainInfoText">Created by: \n Peter Best: Dictionary \n Albert Pham: Flight Tracker \n Patrick Carter: NewsFeed \n Joshua El-Haddad: NYT \n \n To navigate to each section of the program, tap on the icons in the toolbar at the top of the screen. Each section then has its own dedicated help menu for itself.</string>
 
     <string name="listFlightNameString">Flight</string>
     <string name="listFlightStatusString">Status</string>

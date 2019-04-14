@@ -6,19 +6,20 @@ import android.util.Log;
 
 public class DictionaryEmptyActivity extends AppCompatActivity {
 
+    /**
+     * load passed data
+     * pass data into fragment
+     * tell fragment it is on phone
+     * @param savedInstanceState bundle of data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dict_empty);
-
-        Log.e("DEBUG","loaded empty activity");
-        Bundle dataToPass = getIntent().getExtras(); //get the data that was passed from FragmentExample
-        Log.e("DEBUG","loaded data bundle in activity");
-        //This is copied directly from FragmentExample.java lines 47-54
+        Bundle dataToPass = getIntent().getExtras();
         DictionaryFragment dFragment = new DictionaryFragment();
-        dFragment.setArguments( dataToPass ); //pass data to the the fragment
-        Log.e("DEBUG","loaded data bundle in fragment");
-        dFragment.setTablet(false); //tell the Fragment that it's on a phone.
+        dFragment.setArguments( dataToPass );
+        dFragment.setTablet(false);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragmentLocation, dFragment)

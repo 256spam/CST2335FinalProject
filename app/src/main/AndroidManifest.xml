@@ -15,40 +15,47 @@
         <activity
             android:name=".FlightSearchActivity"
             android:label="Flight Tracker"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".FlightDetailsActivity"
             android:label="Flight Tracker"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".FlightTrackerActivity"
             android:label="FST"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".DictionaryActivity"
             android:label="Dictionary"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".DictionaryEmptyActivity"
             android:label="Dictionary"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".NewsfeedActivity"
             android:label="News Feed"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".NewsfeedReadArticleDetailFragment"/>
-        <activity android:name=".NewsfeedEmptyActivity" />
-        <activity android:name=".NewsfeedSavedDatabase" />
-        <activity android:name=".NewsfeedSavedArticles" />
-        <activity android:name=".NewsfeedReadArticle" />
-        <activity android:name=".NewsfeedDatabaseOpener" />
+        <activity
+            android:name=".NewsfeedEmptyActivity"
+            android:label="News Feed"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".NewsfeedSavedArticles"
+            android:label="News Feed"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".NewsfeedReadArticle"
+            android:label="News Feed"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".NYTActivity"
             android:label="NYT Article"
             android:parentActivityName=".MainActivity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
