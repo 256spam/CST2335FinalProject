@@ -47,7 +47,7 @@
         android:id="@+id/DictListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/dictFragmentLocation"
+        android:layout_toLeftOf="@id/fragmentLocation"
         android:layout_below="@id/DictSearchFeild"
         android:layout_above="@id/DictToggleButton"/>
 
@@ -68,7 +68,7 @@
         android:text="@string/dictButton2" />
 
     <FrameLayout
-        android:id="@+id/dictFragmentLocation"
+        android:id="@+id/fragmentLocation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/DictToolbar"
