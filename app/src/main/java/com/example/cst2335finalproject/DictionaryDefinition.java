@@ -6,6 +6,10 @@ public class DictionaryDefinition{
     String definition;
     String wordClass;
 
+    /**
+     * all code created via the use of inclass examples, lab work and official documentation from developer.android.com
+     */
+
     public DictionaryDefinition(Long i, String t, String ld, String wc){
         id = i;
         definitonTitle = t;

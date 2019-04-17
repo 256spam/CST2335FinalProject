@@ -7,6 +7,8 @@ import android.util.Log;
 public class DictionaryEmptyActivity extends AppCompatActivity {
 
     /**
+     * all code created via the use of inclass examples, lab work and official documentation from developer.android.com
+     *
      * load passed data
      * pass data into fragment
      * tell fragment it is on phone

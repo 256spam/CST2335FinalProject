@@ -15,6 +15,10 @@ public class DictionaryAdapter extends ArrayAdapter<DictionaryDefinition> {
     int resource;
     ArrayList<DictionaryDefinition> DefinitionList = null;
 
+    /**
+     * all code created via the use of inclass examples, lab work and official documentation from developer.android.com
+     */
+
     public DictionaryAdapter(Context c, int r, ArrayList<DictionaryDefinition> ml){
         super(c,r,ml);
         context = c;

@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 
 public class DictionaryFragment extends Fragment {
+    /**
+     * all code created via the use of inclass examples, lab work and official documentation from developer.android.com
+     */
 
     private boolean isTablet;
     private Bundle dataFromActivity;
