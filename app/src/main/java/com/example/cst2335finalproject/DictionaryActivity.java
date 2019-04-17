@@ -32,6 +32,9 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DictionaryActivity extends AppCompatActivity {
+    /**
+     * all code created via the use of inclass examples, lab work and official documentation from developer.android.com
+     */
     Toolbar toolbar;
     EditText searchFeild;
     Button searchButton;
