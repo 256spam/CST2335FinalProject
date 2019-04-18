@@ -51,11 +51,6 @@
             android:label="News Feed"
             android:parentActivityName=".MainActivity"/>
 
-        <activity
-            android:name=".NYTActivity"
-            android:label="NYT Article"
-            android:parentActivityName=".MainActivity" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
