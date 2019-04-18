@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:id="@+id/progressBar_kn"/>
+    <TextView
+        android:id="@+id/copyright_kn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Copyright: " />
+
+    <ListView
+        android:id="@+id/nyt_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/nyt_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nyt_progressBar"
+        android:layout_marginBottom="0dp"
+        android:text="@string/nyt_save_kn" />
+
+    <Button
+        android:id="@+id/nyt_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nyt_save"
+        android:layout_marginBottom="0dp"
+        android:text="@string/nyt_delete_kn" />
+
+
+</LinearLayout>
